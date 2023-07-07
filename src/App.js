@@ -1,24 +1,25 @@
 import logo from './logo.svg';
 import './App.css';
+import {useState} from "react";
+import Home from "./component/home";
 
 function App() {
+  const [state,setState] = useState({isLoggedIn: false})
+  const handleLogIn = () =>{
+    setState({isLoggedIn: true})
+  }
+  const handleLogOut = () =>{
+    setState({isLoggedIn: false})
+  }
+  const {isLoggedIn} = state
+  if (isLoggedIn) return (<Home onLogOut={handleLogIn}/>)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div style={{textAlign: 'center'}}>
+        <div>
+          <h1>Please Log in</h1>
+          <button onClick={handleLogIn}>Log in</button>
+        </div>
+      </div>
   );
 }
 
